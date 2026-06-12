@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Treino Customizado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        /* Estilos específicos para a tela de criação se integrarem ao seu app */
+        .criar-treino-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        .campo-grupo {
+            margin-bottom: 25px;
+        }
+
+        .campo-grupo label {
+            display: block;
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .campo-grupo input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            background: #151515;
+            border: 1px solid #222;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        .campo-grupo input[type="text"]:focus {
+            border-color: #2ecc71;
+            outline: none;
+        }
+
+        .bloco-musculo {
+            background: #151515;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .bloco-musculo h4 {
+            color: #2ecc71;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grid-selecao-exercicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .item-checkbox {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .item-checkbox:hover {
+            border-color: #333;
+            background: #111;
+        }
+
+        .item-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2ecc71;
+            cursor: pointer;
+        }
+
+        .item-checkbox span {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .btn-salvar-custom {
+            width: 100%;
+            padding: 16px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+        }
+
+        .btn-salvar-custom:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .btn-voltar-criacao {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .btn-voltar-criacao:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="criar-treino-container">
+        
+        <a href="../index.html" class="btn-voltar-criacao">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+        </a>
+        
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 5px;">🔨 Montar Treino Personalizado</h2>
+        <p style="color: #aa; font-size: 14px; margin-bottom: 30px;">Defina um nome e selecione os exercícios da sua rotina.</p>
+
+        <div class="campo-grupo">
+            <label for="nomeDoTreino">Nome da Rotina</label>
+            <input type="text" id="nomeDoTreino" placeholder="Ex: Foco em Braços, Treino A - Força, Clássico..." autocomplete="off">
+        </div>
+
+        <h3 style="font-size: 18px; margin-bottom: 15px; font-weight: 600;">Selecione os Exercícios:</h3>
+        
+        <div id="listaDeEscolhas"></div>
+
+        <button class="btn-salvar-custom" onclick="salvarNovoTreino()">
+            <i class="fa-solid fa-floppy-disk"></i> Salvar Nova Rotina
+        </button>
+
+    </div>
+
+    <script>
+        // Banco de dados idêntico à sua biblioteca para manter compatibilidade total de nomes
+        const dicionarioExercicios = {
+    "💪 Peitoral": [
+        "Supino Reto", "Supino Inclinado Halteres", "Crucifixo Reto", "Crossover Polia Média", 
+        "Supino Declinado", "Flexão de Braço", "Peck Deck (Voador)", "Press Inclinado Máquina", 
+        "Crucifixo Inclinado", "Dips (Paralelas)", "Supino Reto Halteres", "Pullover", 
+        "Crossover Polia Alta", "Crossover Polia Baixa", "Flexão Diamante", "Supino com Pausa", 
+        "Peck Deck Inverso", "Press Reto Máquina", "Flexão Declinada", "Flexão Inclinada"
+    ],
+    "🔥 Dorsal / Costas": [
+        "Puxada Aberta", "Remada Curvada", "Remada Baixa", "Levantamento Terra", 
+        "Barra Fixa (Pull-up)", "Serrote (Unilateral)", "Pullover Polia", "Remada Cavalinho", 
+        "Puxada Supinada", "Extensão Lombar", "Remada T", "Puxada Triângulo", 
+        "Remada Alta (Dorsal)", "Barra Fixa Supinada", "Remada Sentado Unilateral", "Encolhimento Barra", 
+        "Face Pull", "Remada Máquina", "Good Morning", "Puxada Nuca"
+    ],
+    "⚡ Ombros": [
+        "Desenvolvimento Halteres", "Elevação Lateral", "Elevação Frontal", "Crucifixo Inverso", 
+        "Desenvolvimento Militar", "Elevação Lateral Polia", "Remada Alta Barra", "Face Pull", 
+        "Elevação Frontal Polia", "Encolhimento Halteres", "Arnold Press", "Elevação Lateral Inclinado", 
+        "Desenvolvimento Máquina", "Y-Raise", "Elevação Lateral Sentado", "Press com Halteres Neutro", 
+        "Crucifixo Inverso Máquina", "High Pull", "Bottom-up Press", "Prancha de Ombros"
+    ],
+    "💪 Bíceps": [
+        "Rosca Direta Barra W", "Rosca Alternada", "Rosca Martelo", "Rosca Scott", 
+        "Rosca Concentrada", "Rosca Polia Baixa", "Rosca Inversa", "Rosca Banco 45°", 
+        "Rosca 21", "Rosca Cross Alto", "Drag Curl", "Spider Curl", "Zottman Curl", 
+        "Rosca na Polia Alta", "Rosca com Corda", "Preacher Curl", "Incline Hammer Curl", 
+        "Rosca com Barra Reta", "Chin-ups", "Plate Curl"
+    ],
+    "🦾 Tríceps": [
+        "Tríceps Pulley", "Tríceps Corda", "Tríceps Testa", "Tríceps Francês", 
+        "Supino Fechado", "Mergulho no Banco", "Tríceps Coice", "Extensão por Trás (Cabo)", 
+        "Paralelas", "Flexão Diamante", "Skull Crushers (Barra W)", "Tríceps Unilateral Cabo", 
+        "Push-ups Fechado", "Overhead Extension Halter", "Tríceps Barra Reta Polia", "Jm Press", 
+        "Tríceps na Máquina", "Kickback com Halter", "Bodyweight Skullcrushers", "Tríceps na Barra Fixa"
+    ],
+    "🦵 Membros Inferiores": [
+        "Agachamento Livre", "Leg Press 45°", "Cadeira Extensora", "Mesa Flexora", 
+        "Stiff", "Passada", "Agachamento Búlgaro", "Cadeira Adutora", "Gêmeos em Pé", 
+        "Gêmeos Sentado", "Hack Squat", "Cadeira Abdutora", "Agachamento Sumô", 
+        "Flexora Em Pé", "Elevação Pélvica", "Leg Press Horizontal", "Agachamento Taça (Goblet)", 
+        "Step Up", "Flexora Sentado", "Panturrilha no Leg"
+    ],
+    "🔥 Abdômen": [
+        "Crunch Tradicional", "Prancha Abdominal", "Elevação de Pernas", "Infra Solo", 
+        "Canivete", "Abdominal Bicicleta", "Prancha Lateral", "Abdominal na Polia", 
+        "Russian Twist", "Abdominal no Banco", "Leg Raises no chão", "Abdominal Reverso", 
+        "Prancha com Apoio", "Toe Touches", "Mountain Climbers", "Ab Wheel", 
+        "Dead Bug", "Abdominal Tesoura", "Prancha com Rotação", "Abdominal Infra na Paralela"
+    ]
+};
+
+
+        // Renderiza os blocos e checkboxes na tela ao carregar
+        const containerEscolhas = document.getElementById("listaDeEscolhas");
+        
+        containerEscolhas.innerHTML = Object.keys(dicionarioExercicios).map(grupo => `
+            <div class="bloco-musculo">
+                <h4>${grupo}</h4>
+                <div class="grid-selecao-exercicios">
+                    ${dicionarioExercicios[grupo].map(exercicio => `
+                        <label class="item-checkbox">
+                            <input type="checkbox" value="${exercicio}" class="chk-exercicio-escolhido">
+                            <span>${exercicio}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+
+        // Salva a estrutura criada pelo usuário no localStorage
+        function salvarNovoTreino() {
+            const inputNome = document.getElementById("nomeDoTreino");
+            const nomeTreinoStr = inputNome.value.trim();
+
+            if (!nomeTreinoStr) {
+                alert("Por favor, digite um nome para a sua rotina!");
+                return;
+            }
+
+            // Captura todos os checkboxes que o usuário marcou
+            const marcados = Array.from(document.querySelectorAll('.chk-exercicio-escolhido:checked')).map(cb => cb.value);
+
+            if (marcados.length === 0) {
+                alert("Selecione pelo menos 1 exercício para salvar o treino!");
+                return;
+            }
+
+            // Cria o objeto estruturado do treino
+            const novaRotina = {
+                nome: nomeTreinoStr,
+                exercicios: marcados
+            };
+
+            // Pega os treinos customizados antigos e adiciona o novo na lista
+            const treinosExistentes = JSON.parse(localStorage.getItem("treinos_customizados")) || [];
+            
+            // Impede a criação de dois treinos com o exato mesmo nome para não bugar
+            if (treinosExistentes.some(t => t.nome.toLowerCase() === nomeTreinoStr.toLowerCase())) {
+                alert("Você já possui um treino com esse nome! Escolha outro.");
+                return;
+            }
+
+            treinosExistentes.push(novaRotina);
+            localStorage.setItem("treinos_customizados", JSON.stringify(treinosExistentes));
+
+            alert("🎉 Rotina '" + nomeTreinoStr + "' salva com sucesso!");
+            window.location.href = "../index.html"; // Redireciona de volta para a Home
+        }
+    </script>
+</body>
+
+</html>

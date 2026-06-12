@@ -1,0 +1,43 @@
+body { font-family: 'Poppins', sans-serif; background: #0a0a0c; color: #fff; margin: 0; padding: 0; }
+
+.carrossel-container { 
+    display: flex; 
+    overflow-x: auto; 
+    gap: 15px; 
+    padding: 20px; 
+    white-space: nowrap; 
+}
+
+.card-musculo { 
+    min-width: 160px; /* Tamanho maior */
+    height: 220px;    /* Altura maior */
+    background-size: cover; /* Faz a foto preencher o card */
+    background-position: center;
+    border-radius: 16px; 
+    display: flex; 
+    align-items: flex-end; /* Texto vai para baixo */
+    justify-content: center;
+    cursor: pointer; 
+    flex-shrink: 0; 
+    border: 3px solid #333;
+    transition: 0.3s;
+    margin-right: 15px;
+    padding-bottom: 10px;
+}
+
+/* Efeito de destaque ao passar o mouse */
+.card-musculo:hover {
+    transform: scale(1.05);
+    border-color: #22c55e;
+}
+
+/* Cores das bordas para cada grupo */
+.borda-peito { border-color: #22c55e; }
+.borda-costas { border-color: #f97316; }
+/* ... adicione as outras bordas seguindo esse padrão */
+
+
+.secao-exercicios { display: none; padding: 20px; }
+.secao-exercicios.ativo { display: block; }
+.card-item { background: #1a1a1d; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 4px solid #22c55e; }
+h2 { color: #22c55e; }
