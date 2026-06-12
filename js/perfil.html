@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+
+<body>
+    
+    <a href="../index.html" class="btn-voltar">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+    </a>
+
+    <div class="perfil-container">
+
+        <div class="perfil-topo">
+            <div class="avatar-wrapper">
+                <label for="uploadFoto" class="avatar-label">
+                    <img id="fotoPerfil" src="../images/user.png" alt="">
+                    <div class="btn-upload-overlay">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                </label>
+                <input type="file" id="uploadFoto" accept="image/*" style="display: none;">
+            </div>
+            
+            <div class="nome-container">
+                <h1 id="nomeUsuario">Fernando</h1>
+                <button id="editarNome" class="btn-lapis-inline" title="Editar Nome">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+            
+            <span class="badge-status">FN Trainer</span>
+        </div>
+
+        <div class="perfil-grid-cards">
+            
+            <div class="perfil-card">
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-weight-scale"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Peso Atual</h2>
+                    <p id="peso">Não definido</p>
+                </div>
+                <button id="editarPeso" class="btn-lapis-card" title="Editar Peso">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+            <div class="perfil-card">
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-ruler-vertical"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Altura</h2>
+                    <p id="altura">Não definida</p>
+                </div>
+                <button id="editarAltura" class="btn-lapis-card" title="Editar Altura">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+            <div class="perfil-card">
+                <div class="card-icon orange">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Objetivo</h2>
+                    <p id="objetivo">Não definido</p>
+                </div>
+                <button id="editarObjetivo" class="btn-lapis-card" title="Editar Objetivo">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="perfil-acoes">
+            
+            <div class="botoes-secundarios-group">
+                <button id="removerFoto" class="btn-secundario">
+                    <i class="fa-solid fa-image-slash"></i> Remover Foto
+                </button>   
+                
+                <button id="resetarPerfil" class="btn-perigo">
+                    <i class="fa-solid fa-trash-can"></i> Resetar Progresso
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="perfil.js"></script>
+
+</body>
+</html>
