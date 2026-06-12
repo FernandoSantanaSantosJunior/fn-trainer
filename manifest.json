@@ -1,0 +1,15 @@
+{
+  "name": "FN Trainer",
+  "short_name": "FN Trainer",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#2ecc71",
+  "icons": [
+    {
+      "src": "imagens/icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

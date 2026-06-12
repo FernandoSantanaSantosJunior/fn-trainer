@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Evolução</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <a href="../index.html" class="btn-voltar">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+    </a>
+    
+    <div class="evolution-page">
+        
+        <div class="evolution-header">
+            <h1>🏆 Minha Evolução</h1>
+            <p class="subtitle">Acompanhe sua jornada e ganho de força</p>
+        </div>
+        
+        <div class="evolution-grid">
+            
+            <div class="evolution-card highlight">
+                <div class="card-icon xp">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="card-info">
+                    <h2>XP Total</h2>
+                    <p id="xpTotal">0</p>
+                </div>
+            </div>
+            
+            <div class="evolution-card highlight">
+                <div class="card-icon level">
+                    <i class="fa-solid fa-ranking-star"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Nível</h2>
+                    <p id="nivel">1</p>
+                </div>
+            </div>
+            
+            <div class="evolution-card">
+                <div class="card-icon workouts">
+                    <i class="fa-solid fa-dumbbell"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Treinos Concluídos</h2>
+                    <p id="treinos">0</p>
+                </div>
+            </div>
+            
+            <div class="evolution-card">
+                <div class="card-icon rating">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Nota Média</h2>
+                    <p id="media">0</p>
+                </div>
+            </div>
+            
+            <div class="evolution-card">
+                <div class="card-icon time">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="card-info">
+                    <h2>Tempo Total Treinado</h2>
+                    <p id="tempo">0 min</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="progress-box">
+            <div class="progress-header">
+                <h3>Próximo Nível</h3>
+                <p id="xpTexto">0 / 1000 XP</p>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="evolucao.js"></script>
+    
+</body>
+
+</html>

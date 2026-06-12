@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FN Trainer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <section class="hero" style="background-image: url('imagens/fnbanner.png');">
+        <div class="overlay">
+            <h2 id="welcome"></h2>
+            <p>A cada dia mais perto da sua melhor versão.</p>
+        </div>
+    </section>
+
+    <section class="calendar">
+        <h2 id="mesAtual">Junho de 2026</h2>
+        <div class="days">
+            <button class="day" onclick="mostrarTreino('seg')">SEG</button>
+            <button class="day" onclick="mostrarTreino('ter')">TER</button>
+            <button class="day" onclick="mostrarTreino('qua')">QUA</button>
+            <button class="day" onclick="mostrarTreino('qui')">QUI</button>
+            <button class="day" onclick="mostrarTreino('sex')">SEX</button>
+            <button class="day" onclick="mostrarTreino('sab')">SAB</button>
+            <button class="day" onclick="mostrarTreino('dom')">DOM</button>
+        </div>
+    </section>
+
+    <section class="workout-card">
+        <h2 id="tituloTreino">Carregando...</h2>
+        <p id="descricaoTreino">Aguarde...</p>
+        <button id="startWorkoutBtn">💪 Começar Treino</button>
+
+        <div id="workoutArea" style="display:none;">
+            <h3>⏱️ Tempo de Treino</h3>
+            <div id="timer">00:00:00</div>
+        </div>
+
+        <div class="custom-workout-banner">
+            <div class="banner-content">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Rotina Personalizada</h3>
+                <p>Monte o seu próprio treino escolhendo exercícios direto da biblioteca.</p>
+            </div>
+            <a href="treinos/criar-treino.html" class="btn-criar-custom">Criar Treino</a>
+        </div>
+
+        <div class="meus-treinos-salvos">
+            <h3>Seus Treinos Customizados</h3>
+            <div id="listaTreinosCustomizados" class="grid-treinos-custom">
+                <p class="sem-treino">Nenhum treino criado ainda.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="message-card">
+        <h3>Mensagem do Dia</h3>
+        <p id="mensagemDia"></p>
+    </section>
+
+    <nav class="bottom-menu">
+        <a href="index.html">🏠 <span>Início</span></a>
+        <a href="treinos/treinos.html">🏋️ <span>Treinos</span></a>
+        <a href="evolucao.html">🏆 <span>Evolução</span></a>
+        <a href="musica/musica.html">🎵 <span>Música</span></a>
+        <a href="perfil/perfil.html">👤 <span>Perfil</span></a>
+    </nav>
+
+    
+    <button id="btnChatbotFlutuante" class="btn-chatbot-fab"><i class="fa-solid fa-comments"></i></button>
+
+    <div id="janelaChatbot" class="janela-chatbot msn-escondida">
+        <div class="chatbot-header">
+            <div class="chatbot-perfil">
+                <div class="avatar-bot"><img src="imagens/fnbanner.png" alt="FN Assistente" class="img-avatar-bot"></div>
+                <div><h4>FN Assistente</h4><span>Online</span></div>
+            </div>
+            <button id="btnFecharChatbot" class="btn-fechar-chat"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="corpoChatbot" class="chatbot-body">
+            
+            <div id="corpoChatbot" class="chatbot-body">
+    <p style="font-size: 13px; color: #888;">Como posso te ajudar hoje?</p>
+                <div id="opcoesDuvidas" class="container-opcoes-chat">
+                <p style="color: #666; font-size: 11px; font-weight: 600; margin: 5px 0 2px 2px; text-transform: uppercase; letter-spacing: 0.5px;">⚙️ Sobre o App</p>
+                <button class="btn-opcao-pergunta" data-pergunta="xp">Como funciona o sistema de XP?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="pr">Como atualizar meu PR (Recorde)?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="custom">Como criar meu treino personalizado?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="historico">Onde vejo meu histórico e evolução?</button>
+
+                <p style="color: #666; font-size: 11px; font-weight: 600; margin: 10px 0 2px 2px; text-transform: uppercase; letter-spacing: 0.5px;">🏋️ Dicas de Treino</p>
+                <button class="btn-opcao-pergunta" data-pergunta="falha">O que é treinar até a falha?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="descanso">Quanto tempo devo descansar entre as séries?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="lesoes">Como evitar lesões nos treinos pesados?</button>
+
+                <p style="color: #666; font-size: 11px; font-weight: 600; margin: 10px 0 2px 2px; text-transform: uppercase; letter-spacing: 0.5px;">🍎 Nutrição e Saúde</p>
+                <button class="btn-opcao-pergunta" data-pergunta="agua">Quanto de água devo beber por dia?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="pretreino">O que comer antes do treino (Pré-treino)?</button>
+                <button class="btn-opcao-pergunta" data-pergunta="postreino">O que comer depois do treino (Pós-treino)?</button>
+            </div>
+
+</div>
+
+            </div>
+    </div>
+    
+    <script src="home.js"></script>
+
+</body>
+</html>
