@@ -156,6 +156,10 @@ function encerrarTreino() {
             localStorage.setItem(`Carga3_${idLimpo}`, c3);
             localStorage.setItem(`Prog2_${idLimpo}`, p2);
             localStorage.setItem(`Prog3_${idLimpo}`, p3);
+            localStorage.removeItem("inicioTreino");
+
+    alert("Treino encerrado!..."); 
+    window.location.href = "../index.html";
         }
     });
 
@@ -204,19 +208,29 @@ function encerrarTreino() {
 }
 
 // 4. CRONÔMETRO ATIVO DO TREINO
-let segundos = 0;
-const timer = document.getElementById("timer");
+// --- CRONÔMETRO RESILIENTE ---
+const timerDisplay = document.getElementById("timer");
 
-setInterval(() => {
-    segundos++;
-    const horas = Math.floor(segundos / 3600);
-    const minutos = Math.floor((segundos % 3600) / 60);
-    const seg = segundos % 60;
-
-    if (timer) {
-        timer.innerHTML =
-            String(horas).padStart(2, "0") + ":" +
-            String(minutos).padStart(2, "0") + ":" +
-            String(seg).padStart(2, "0");
+function iniciarCronometro() {
+    if (!localStorage.getItem("inicioTreino")) {
+        localStorage.setItem("inicioTreino", Date.now());
     }
-}, 1000);
+    
+    setInterval(() => {
+        const inicio = parseInt(localStorage.getItem("inicioTreino"));
+        const agora = Date.now();
+        const diferenca = Math.floor((agora - inicio) / 1000); 
+
+        const horas = Math.floor(diferenca / 3600);
+        const minutos = Math.floor((diferenca % 3600) / 60);
+        const seg = diferenca % 60;
+
+        if (timerDisplay) {
+            timerDisplay.innerHTML = 
+                String(horas).padStart(2, "0") + ":" +
+                String(minutos).padStart(2, "0") + ":" +
+                String(seg).padStart(2, "0");
+        }
+    }, 1000);
+}
+iniciarCronometro();
