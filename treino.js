@@ -209,19 +209,25 @@ function encerrarTreino() {
     window.location.href = "index.html";
 }
 
-// 4. CRONÔMETRO ATIVO DO TREINO
-// --- CRONÔMETRO RESILIENTE ---
+// 4. CRONÔMETRO RESILIENTE (Só para quando o treino encerra)
 const timerDisplay = document.getElementById("timer");
 
 function iniciarCronometro() {
+    // Só inicia se ainda não existir um horário de treino rolando
     if (!localStorage.getItem("inicioTreino")) {
         localStorage.setItem("inicioTreino", Date.now());
     }
-    
+
+    // Inicia o intervalo de atualização
     setInterval(() => {
+        // Se o "inicioTreino" foi removido (pelo botão encerrar), o timer para aqui
+        if (!localStorage.getItem("inicioTreino")) {
+            return;
+        }
+
         const inicio = parseInt(localStorage.getItem("inicioTreino"));
         const agora = Date.now();
-        const diferenca = Math.floor((agora - inicio) / 1000); 
+        const diferenca = Math.floor((agora - inicio) / 1000);
 
         const horas = Math.floor(diferenca / 3600);
         const minutos = Math.floor((diferenca % 3600) / 60);
@@ -235,4 +241,6 @@ function iniciarCronometro() {
         }
     }, 1000);
 }
+
+// Inicia sempre que carregar a página
 iniciarCronometro();
