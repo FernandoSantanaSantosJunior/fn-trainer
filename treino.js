@@ -135,6 +135,11 @@ if (finishBtn) {
 }
 
 function encerrarTreino() {
+    clearInterval(cronometroInterval);
+    
+    // 2. ZERA O TEMPO
+    segundos = 0;
+    
     const tempoFormatadoAtual = document.getElementById("timer") ? document.getElementById("timer").innerText : "00:00:00";
     const partes = tempoFormatadoAtual.split(':');
     const segundosTotaisDoTreino = (+partes[0]) * 3600 + (+partes[1]) * 60 + (+partes[2]);
@@ -209,29 +214,18 @@ function encerrarTreino() {
     window.location.href = "index.html";
 }
 
-// 4. CRONÔMETRO RESILIENTE (Só para quando o treino encerra)
+// 4. CRONÔMETRO SIMPLES
 const timerDisplay = document.getElementById("timer");
+let segundos = 0;
+let cronometroInterval;
 
 function iniciarCronometro() {
-    // Só inicia se ainda não existir um horário de treino rolando
-    if (!localStorage.getItem("inicioTreino")) {
-        localStorage.setItem("inicioTreino", Date.now());
-    }
-
-    // Inicia o intervalo de atualização
-    setInterval(() => {
-        // Se o "inicioTreino" foi removido (pelo botão encerrar), o timer para aqui
-        if (!localStorage.getItem("inicioTreino")) {
-            return;
-        }
-
-        const inicio = parseInt(localStorage.getItem("inicioTreino"));
-        const agora = Date.now();
-        const diferenca = Math.floor((agora - inicio) / 1000);
-
-        const horas = Math.floor(diferenca / 3600);
-        const minutos = Math.floor((diferenca % 3600) / 60);
-        const seg = diferenca % 60;
+    segundos = 0; // Garante que começa do zero
+    cronometroInterval = setInterval(() => {
+        segundos++;
+        const horas = Math.floor(segundos / 3600);
+        const minutos = Math.floor((segundos % 3600) / 60);
+        const seg = segundos % 60;
 
         if (timerDisplay) {
             timerDisplay.innerHTML = 
@@ -242,5 +236,5 @@ function iniciarCronometro() {
     }, 1000);
 }
 
-// Inicia sempre que carregar a página
+// Inicia automaticamente ao carregar a página
 iniciarCronometro();
