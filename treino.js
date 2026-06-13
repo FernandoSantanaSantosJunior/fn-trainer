@@ -158,7 +158,9 @@ function encerrarTreino() {
             localStorage.setItem(`Prog3_${idLimpo}`, p3);
             localStorage.removeItem("inicioTreino");
 
-    alert("Treino encerrado!..."); 
+   localStorage.removeItem("inicioTreino");
+
+    // REDIRECIONAMENTO SILENCIOSO (sem o alert):
     window.location.href = "../index.html";
         }
     });
