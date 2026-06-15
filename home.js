@@ -6,6 +6,8 @@ const timer = document.getElementById("timer");
 const mensagem = document.getElementById("mensagemDia");
 const welcome = document.getElementById("welcome");
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 function carregarMensagemDia(diaNumerico) {
     if (!mensagem) return;
     switch (diaNumerico) {
