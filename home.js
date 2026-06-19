@@ -13,8 +13,8 @@ function carregarMensagemDia(diaNumerico) {
         case 2: mensagem.innerHTML = "Disciplina supera motivação."; break;
         case 3: mensagem.innerHTML = "Descansar também faz parte do progresso."; break;
         case 4: mensagem.innerHTML = "Costas fortes, mente forte."; break;
-        case 5: mensagem.innerHTML = "Último esforço da semana."; break;
-        case 6: mensagem.innerHTML = "Quando se sentir fraco, não esquenta. Todos pensam o mesmo... ou prove o contrário."; break;
+        case : mensagem.innerHTML = "Último esforço da semana."; break;
+        case 5: mensagem.innerHTML = "Quando se sentir fraco, não esquenta. Todos pensam o mesmo... ou prove o contrário."; break;
         default: mensagem.innerHTML = "Recupere energia para a próxima semana.";
     }
 }
